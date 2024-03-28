@@ -7,7 +7,24 @@ const newUser = {
   last_name: "Şahiner",
 };
 function App() {
+  /*
+  const { isPending, error, data: users } = useQuery({
+    queryKey: ["users"],
+    queryFn: ()=> axios.get("https://reqres.in/api/users").then((res) => res.data.data),
+    staleTime: 30000,
+  });
+*/
+
   const { isPending, error, data: users } = useUsers();
+  /*
+  const queryClient = useQueryClient();
+  const mutation = useMutation({
+    mutationFn: (user) => axios.post("https://reqres.in/api/users", user).then((res) => res.data),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ["users"] });
+    },
+  });
+  */
   const mutation = useCreateUser();
 
   const handleClick = () => {
